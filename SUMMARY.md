@@ -20,5 +20,6 @@
 * [14. Integrations ecosystem](chapter-14.md)
 * [15. Distribution and security](chapter-15.md)
 * [16. RISC-V and the MuseBook port](chapter-16.md)
+* [17. ChromiumOS support](chapter-17.md)
 * [Appendix 1](z-appendix-1.md)
 * [Contents](z-contents.md)
