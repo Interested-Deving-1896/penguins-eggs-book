@@ -10,24 +10,27 @@ This project provides a structured resource for writing a book about penguins' e
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project is organized as a structured repository for writing and managing a book about penguins' eggs. The primary components include Markdown files for chapters, a summary file, and appendices. The `.devcontainer` directory supports development in a containerized environment. The `.gitlab-ci.yml` file defines CI/CD pipelines. The `media` directory stores assets like images or diagrams. The `chromiumos` directory and `main.docx` file may contain additional resources or references.
+The project consists of a repository for managing and generating content for a book about penguins' eggs, primarily written in Shell. It includes workflows for repository synchronization, artifact mirroring, dependency management, and documentation generation. The workflows are located in the `.github/workflows` directory and automate tasks such as syncing repositories, updating READMEs, and managing branches. The book content is organized into Markdown files (`chapter-1.md` to `chapter-17.md`) and additional supporting files like `SUMMARY.md` and `LICENSE`. The `scripts` directory contains Shell scripts for auxiliary tasks, while the `media` directory stores assets related to the book. The `chromiumos` and `config` directories appear to manage external dependencies or configurations.
 
 Directory structure:
 ```plaintext
 .
-├── .devcontainer/       # Configuration for containerized development
-├── .gitignore           # Git ignore rules
-├── .gitlab-ci.yml       # GitLab CI/CD configuration
-├── 1-about.md           # About section of the book
-├── 2-introduction.md    # Introduction chapter
-├── 3-road-map.md        # Roadmap for the book
-├── chapter-*.md         # Individual chapters (1-17)
-├── z-appendix-1.md      # Appendix section
-├── z-contents.md        # Table of contents
-├── chromiumos/          # Additional resources or references
-├── main.docx            # Word document version of the book
-├── media/               # Media assets (images, diagrams, etc.)
-└── README.md            # Project documentation
+├── .github/
+│   └── workflows/
+├── chromiumos/
+├── config/
+├── media/
+├── scripts/
+├── 1-about.md
+├── 2-introduction.md
+├── 3-road-map.md
+├── chapter-1.md
+├── chapter-2.md
+├── ...
+├── chapter-17.md
+├── LICENSE
+├── README.md
+├── SUMMARY.md
 ```
 <!-- AI:end:architecture -->
 
