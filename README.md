@@ -4,33 +4,29 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-book)
 
 <!-- AI:start:what-it-does -->
-This project provides a structured resource for writing a book about penguins' eggs. It organizes chapters, appendices, and supplementary materials to assist authors in collaboratively developing and maintaining the content.
+This project automates the synchronization, management, and maintenance of repositories and documentation related to a book about penguins' eggs. It provides workflows for tasks such as mirroring repositories, updating documentation, managing branches, and integrating with GitLab. It is designed for developers and maintainers involved in collaborative writing and infrastructure management.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project consists of a repository for managing and generating content for a book about penguins' eggs, primarily written in Shell. It includes workflows for repository synchronization, artifact mirroring, dependency management, and documentation generation. The workflows are located in the `.github/workflows` directory and automate tasks such as syncing repositories, updating READMEs, and managing branches. The book content is organized into Markdown files (`chapter-1.md` to `chapter-17.md`) and additional supporting files like `SUMMARY.md` and `LICENSE`. The `scripts` directory contains Shell scripts for auxiliary tasks, while the `media` directory stores assets related to the book. The `chromiumos` and `config` directories appear to manage external dependencies or configurations.
+The project consists of a repository for collaboratively writing a book about penguins' eggs, primarily using Shell scripts for automation. The architecture includes workflows for repository synchronization, artifact mirroring, dependency management, and documentation generation. These workflows are defined in YAML files under `.github/workflows`. The book content is organized into Markdown files (`chapter-*.md`) and a `SUMMARY.md` file for navigation. Supporting directories include `chromiumos` for Chromium OS-related content, `config` for configuration files, `media` for assets, and `scripts` for automation scripts.
 
 Directory structure:
 ```plaintext
 .
 ├── .github/
-│   └── workflows/
-├── chromiumos/
-├── config/
-├── media/
-├── scripts/
-├── 1-about.md
+│   └── workflows/          # CI/CD workflows
+├── chromiumos/             # Chromium OS-related content
+├── config/                 # Configuration files
+├── media/                  # Media assets
+├── scripts/                # Automation scripts
+├── 1-about.md              # Book content
 ├── 2-introduction.md
-├── 3-road-map.md
-├── chapter-1.md
-├── chapter-2.md
-├── ...
-├── chapter-17.md
-├── LICENSE
-├── README.md
-├── SUMMARY.md
+├── chapter-*.md            # Individual chapters
+├── LICENSE                 # License file
+├── README.md               # Project overview
+├── SUMMARY.md              # Book navigation
 ```
 <!-- AI:end:architecture -->
 
@@ -54,13 +50,21 @@ cd penguins-eggs-book
 ## CI
 
 <!-- AI:start:ci -->
-- **`build-and-lint.yml`**: Runs on push and pull request events. Checks Markdown files for formatting issues and validates the structure of the book. No secrets required.
-
-- **`deploy-docs.yml`**: Deploys the book to a documentation hosting platform (e.g., GitHub Pages) on changes to the `main` branch. Requires the `GH_PAGES_TOKEN` secret for authentication.
-
-- **`spell-check.yml`**: Performs a spell check on all `.md` files in the repository. Runs on push and pull request events. No secrets required. 
-
-- **`container-setup.yml`**: Validates the `.devcontainer` configuration by building the container and running basic tests. Runs on push events. No secrets required.
+- `add-mirror-repo.yml`: Adds a new repository to the mirror configuration. Requires `GITHUB_TOKEN` and `MIRROR_API_KEY` secrets.
+- `check-gitlab-sync.yml`: Verifies synchronization status between GitHub and GitLab repositories. Requires `GITLAB_TOKEN`.
+- `cleanup-branches.yml`: Deletes stale branches in repositories. Requires `GITHUB_TOKEN`.
+- `cleanup-pollution.yml`: Removes unnecessary files or artifacts from repositories. Requires `GITHUB_TOKEN`.
+- `clone-org.yml`: Clones all repositories from a specified organization. Requires `GITHUB_TOKEN`.
+- `create-readmes.yml`: Generates README files for repositories. Requires `GITHUB_TOKEN`.
+- `fork-neon-repos.yml`: Automates forking of specific repositories. Requires `GITHUB_TOKEN`.
+- `generate-dep-graph.yml`: Creates a dependency graph for the project. No secrets required.
+- `gl-storage-scan.yml`: Scans GitLab storage usage. Requires `GITLAB_TOKEN`.
+- `import-repo.yml`: Imports repositories into the organization. Requires `GITHUB_TOKEN`.
+- `inject-badges.yml`: Adds status badges to README files. Requires `GITHUB_TOKEN`.
+- `sync-eggs-docs-to-book.yml`: Synchronizes documentation from the `eggs` project to this book. Requires `GITHUB_TOKEN`.
+- `sync-to-gitlab.yml`: Mirrors repositories from GitHub to GitLab. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
+- `update-readmes.yml`: Updates README files across repositories. Requires `GITHUB_TOKEN`.
+- `validate-config.yml`: Validates configuration files for consistency. No secrets required.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -80,8 +84,8 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 169 commits  
 [@pieroproietti](https://github.com/pieroproietti): 12 commits  
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 2 commits  
 [@hosseinseilani](https://github.com/hosseinseilani): 1 commit  
 <!-- AI:end:contributors -->
 
