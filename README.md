@@ -98,13 +98,11 @@ _Original project — no upstream fork._
 ## Resources
 
 <!-- AI:start:resources -->
-| File | Description |
-|---|---|
-| [config/gitlab-subgroups.yml](https://github.com/Interested-Deving-1896/penguins-eggs-book/blob/main/config/gitlab-subgroups.yml) | GitLab subgroup map |
+_No additional resource files found._
 <!-- AI:end:resources -->
 
 ## License
 
 <!-- AI:start:license -->
-[MIT](https://github.com/Interested-Deving-1896/penguins-eggs-book/blob/main/LICENSE) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
+<!-- License not detected — add a LICENSE file to this repo. -->
 <!-- AI:end:license -->
