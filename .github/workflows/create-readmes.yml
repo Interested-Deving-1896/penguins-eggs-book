@@ -3,8 +3,6 @@ name: Create Missing READMEs
 on:
   schedule:
     - cron: '5 3 * * *'   # Daily at 03:05 UTC — full sweep
-  # Run OSP-priority pass after any workflow that creates new repos
-  # so freshly imported repos get a README immediately.
   workflow_run:
     workflows:
       - "Add Mirror Repo"
@@ -35,7 +33,7 @@ concurrency:
 
 permissions:
   contents: write
-  metadata: read  # Added permission to read metadata for listing OSP repos
+  metadata: read  # Added permission to read repository metadata
 
 jobs:
   create:
