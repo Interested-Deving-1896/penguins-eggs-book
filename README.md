@@ -4,31 +4,32 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-book)
 
 <!-- AI:start:what-it-does -->
-This project automates the synchronization, mirroring, and maintenance of repositories related to the development of a book about penguins' eggs. It provides workflows for tasks such as repository cloning, artifact mirroring, documentation updates, and integration with platforms like GitLab and GitHub. It is used by developers and maintainers managing the book's source materials and related infrastructure.
+This project automates workflows for managing repositories and synchronizing documentation related to a book about penguins' eggs. It is used by developers and maintainers to streamline tasks such as mirroring repositories, updating readmes, and syncing content across platforms.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project is organized into two primary components: the book content and the automation workflows. The book content resides in Markdown files (`chapter-*.md`, `1-about.md`, etc.) and supporting directories like `media` for assets. These files are structured to generate a cohesive book about penguins' eggs. Automation workflows, defined in YAML files under `.github/workflows`, handle tasks such as repository synchronization, artifact mirroring, and documentation updates. The `scripts` directory contains utility scripts supporting these workflows. The directory structure is as follows:
+The project consists of a repository for collaboratively writing a book about penguins' eggs, primarily using Shell scripts for automation. The architecture includes workflows for repository synchronization, artifact mirroring, documentation updates, and token management. These workflows are defined in YAML files under `.github/workflows`. The book content is organized into Markdown files, with chapters and supplementary materials stored at the root level. Automation scripts are located in the `scripts` directory, while media assets are stored in the `media` directory. The repository structure is as follows:
 
 ```plaintext
 .
 ├── .github/
-│   └── workflows/          # Automation workflows (e.g., sync, mirror, update tasks)
-├── 1-about.md              # Book introduction
-├── 2-introduction.md       # Book preface
-├── chapter-*.md            # Individual book chapters
-├── media/                  # Media assets for the book
-├── scripts/                # Supporting scripts for workflows
-├── LICENSE                 # License file
-├── README.md               # Project overview
-├── SUMMARY.md              # Book summary
-├── z-appendix-1.md         # Appendix content
-└── chromiumos/             # Chromium OS-related content (if applicable)
+│   └── workflows/                # Automation workflows (e.g., sync, mirroring)
+├── 1-about.md                    # Book introduction
+├── 2-introduction.md             # Book preface
+├── chapter-*.md                  # Individual chapters of the book
+├── z-appendix-1.md               # Appendices
+├── chromiumos/                   # ChromiumOS-related content
+├── media/                        # Media assets for the book
+├── scripts/                      # Shell scripts for automation
+├── LICENSE                       # License file
+├── README.md                     # Project overview
+├── SUMMARY.md                    # Book summary
+└── main.docx                     # Compiled book document
 ``` 
 
-Workflows interact with the repository to automate tasks like syncing book content (`sync-eggs-docs-to-book.yml`) and managing external mirrors (`mirror-orgs-full.yml`). These components ensure efficient content management and integration with external systems.
+Workflows interact with GitHub, GitLab, and other repositories to manage content synchronization, repository mirroring, and documentation updates. The book content is version-controlled, with automation ensuring consistency across platforms.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -51,21 +52,21 @@ cd penguins-eggs-book
 ## CI
 
 <!-- AI:start:ci -->
-- **add-mirror-repo.yml**: Adds a mirror repository to the project. Requires `GITHUB_TOKEN` and `MIRROR_REPO_URL` secrets.  
-- **check-gitlab-sync.yml**: Verifies synchronization status with GitLab. Requires `GITLAB_TOKEN`.  
-- **cleanup-pollution.yml**: Cleans up unnecessary files or artifacts. No secrets required.  
-- **clone-org.yml**: Clones all repositories from a specified organization. Requires `GITHUB_TOKEN`.  
-- **create-readmes.yml**: Generates README files for repositories. No secrets required.  
-- **fork-neon-repos.yml**: Forks repositories related to the Neon project. Requires `GITHUB_TOKEN`.  
-- **gl-storage-scan.yml**: Scans GitLab storage usage. Requires `GITLAB_TOKEN`.  
-- **import-repo.yml**: Imports repositories into the project. Requires `GITHUB_TOKEN`.  
-- **inject-badges.yml**: Adds badges to README files. No secrets required.  
-- **list-chromium-repos.yml**: Lists Chromium-related repositories. No secrets required.  
-- **sync-eggs-docs-to-book.yml**: Synchronizes documentation to the book. No secrets required.  
-- **sync-to-gitlab.yml**: Syncs repositories to GitLab. Requires `GITLAB_TOKEN`.  
-- **token-health.yml**: Monitors the health of API tokens. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.  
-- **update-readmes.yml**: Updates README files with the latest information. No secrets required.  
-- **upstream-commits.yml**: Tracks upstream commits for repositories. No secrets required.  
+- **add-mirror-repo.yml**: Adds a new repository to the mirror configuration. Requires `GITHUB_TOKEN`.
+- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab repositories. Requires `GITLAB_TOKEN`.
+- **cleanup-pollution.yml**: Removes unnecessary files or artifacts from the repository. No secrets required.
+- **clone-org.yml**: Clones all repositories from a specified GitHub organization. Requires `GITHUB_TOKEN`.
+- **create-readmes.yml**: Generates README files for repositories based on templates. No secrets required.
+- **fork-neon-repos.yml**: Automates forking of specific repositories. Requires `GITHUB_TOKEN`.
+- **gl-storage-scan.yml**: Scans GitLab storage usage for repositories. Requires `GITLAB_TOKEN`.
+- **import-repo.yml**: Imports repositories into the organization. Requires `GITHUB_TOKEN`.
+- **inject-badges.yml**: Adds status badges to README files. No secrets required.
+- **mirror-artifacts.yml**: Mirrors build artifacts to external storage. Requires `STORAGE_ACCESS_KEY`.
+- **mirror-orgs-full.yml**: Performs a full sync of all repositories in an organization. Requires `GITHUB_TOKEN`.
+- **mirror-orgs-watchdog.yml**: Monitors and reports on organization mirroring status. Requires `GITHUB_TOKEN`.
+- **sync-eggs-docs-to-book.yml**: Syncs documentation changes to the book content. No secrets required.
+- **token-health.yml**: Checks the health and validity of access tokens. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
+- **update-readmes.yml**: Updates README files with the latest information. No secrets required.
 <!-- AI:end:ci -->
 
 ## Mirror chain
