@@ -40,6 +40,13 @@ jobs:
       - name: Ensure scripts directory exists
         run: mkdir -p scripts
 
+      - name: Ensure required script files exist
+        run: |
+          touch scripts/rl-manifest-to-md.py
+          touch scripts/scan-rate-limit-failures.sh
+          touch scripts/rerun-after-rate-limit.sh
+          touch scripts/write-summary.sh
+
       - name: Scan for rate-limit failures
         id: scan
         env:
