@@ -135,11 +135,11 @@ jobs:
           WATCH_WORKFLOW:       ${{ inputs.watch_workflow || '' }}
           WATCH_UNTIL:          ${{ inputs.watch_until || 'completed' }}
           WATCH_TIMEOUT_MIN:    ${{ inputs.watch_timeout_min || '60' }}
-        run: bash scripts/quota-monitor.sh
+        run: bash ./scripts/quota-monitor.sh
 
       - name: Write summary
         if: always()
         env:
           JOB_STATUS: ${{ job.status }}
           INPUTS_JSON: ${{ toJSON(inputs) }}
-        run: bash scripts/write-summary.sh
+        run: bash ./scripts/write-summary.sh
